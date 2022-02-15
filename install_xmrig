@@ -34,7 +34,4 @@ cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=
 else cmake .. -DWITH_HWLOC=OFF
 fi
 make -j$(nproc)
-echo "Cleaning up after me..."
-rm -rf install_xmrig
-echo "Done...!"
 exit
