@@ -35,7 +35,7 @@ else cmake .. -DWITH_HWLOC=OFF
 fi
 make -j$(nproc)
 echo "Cleaning up after me..."
-rm -rf install_ubuntu
+rm -rf install_xmrig
 echo "Done...!"
 exit
 
