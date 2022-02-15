@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 apt install git -y
 
 apt install build-essential -y
