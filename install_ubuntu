@@ -1,6 +1,6 @@
 #!/bin/bash
  
-lscpu | grep 64-bit 
+uname -m | grep aarch64
 if [ "$?" -ne 0 ]
 then echo "32 bit system cant install xmrig"
 exit
