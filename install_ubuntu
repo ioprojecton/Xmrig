@@ -1,0 +1,17 @@
+#!/bin/bash
+ 
+lscpu | grep 64-bit 
+if [ "$?" -ne 0 ]
+then echo "32 bit system cant install xmrig"
+exit
+fi
+apt update -y
+apt upgrade -y
+apt install wget -y
+apt install proot -y
+apt install git -y
+git clone https://github.com/MFDGaming/ubuntu-in-termux.git
+cd ubuntu-in-termux
+chmod +x ubuntu.sh
+./ubuntu.sh -y
+./startubuntu.sh
