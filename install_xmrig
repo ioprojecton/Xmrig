@@ -38,9 +38,3 @@ echo "Cleaning up after me..."
 rm -rf install_xmrig
 echo "Done...!"
 exit
-
-#git clone https://github.com/MFDGaming/ubuntu-in-termux.git
-#cd ubuntu-in-termux
-#chmod +x ubuntu.sh
-#./ubuntu.sh -y
-#./startubuntu.sh
