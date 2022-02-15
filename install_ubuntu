@@ -10,8 +10,8 @@ apt upgrade -y
 apt install wget -y
 apt install proot -y
 apt install git -y
-git clone https://github.com/MFDGaming/ubuntu-in-termux.git
-cd ubuntu-in-termux
-chmod +x ubuntu.sh
-./ubuntu.sh -y
-./startubuntu.sh
+#git clone https://github.com/MFDGaming/ubuntu-in-termux.git
+#cd ubuntu-in-termux
+#chmod +x ubuntu.sh
+#./ubuntu.sh -y
+#./startubuntu.sh
