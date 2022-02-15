@@ -1,0 +1,2 @@
+# Xmrig
+Termux ubuntu installation
