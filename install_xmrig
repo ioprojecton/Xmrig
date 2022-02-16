@@ -34,4 +34,6 @@ cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=
 else cmake .. -DWITH_HWLOC=OFF
 fi
 make -j$(nproc)
+cd
+ln -s xmrig/build/xmrig start_xmrig
 exit
