@@ -23,6 +23,7 @@ echo -en "1.Minimal install (Monero/XMR)"
 echo -e "\t2.Full install"
 echo
 echo -en "\t\t\tType: "
+echo
 
 read -n 1 type
 if [ "$type" -eq 1 ]
