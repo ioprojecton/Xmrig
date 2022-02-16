@@ -26,8 +26,8 @@ apt install build-essential -y
 apt install cmake -y
 git clone https://github.com/xmrig/xmrig.git
 
-donate_default=$(search_for_string "kDefaultDonateLevel" "xmrig/src/donate.h>
-donate_minimum=$(search_for_string "kMinimumDonateLevel" "xmrig/src/donate.h>
+donate_default=$(search_for_string "kDefaultDonateLevel" "xmrig/src/donate.h")
+donate_minimum=$(search_for_string "kMinimumDonateLevel" "xmrig/src/donate.h")
 
 donate_default_line=$(search_line_number "$donate_default")
 donate_minimum_line=$(search_line_number "$donate_minimum")
