@@ -1,2 +1,2 @@
 # Xmrig
-Termux ubuntu installation
+Termux Xmrig installation
