@@ -24,6 +24,7 @@ apt install proot -y
 apt install git -y
 apt install build-essential -y
 apt install cmake -y
+apt install dialog
 git clone https://github.com/xmrig/xmrig.git
 
 donate_default=$(search_for_string "kDefaultDonateLevel" "xmrig/src/donate.h")
