@@ -53,7 +53,7 @@ clear
 echo
 echo -e "\t\tChoose install type"
 echo
-echo -en "1.Minimal install (Monero/XMR)"
+echo -n "1.Minimal install (Monero/XMR)"
 echo -e "\t2.Full install"
 echo
 echo -en "\t\t\tType: "
