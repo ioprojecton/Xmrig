@@ -48,7 +48,9 @@ rm xmrig/src/donate.h
 mv xmrig/src/newDonate.h xmrig/src/donate.h
 
 mkdir xmrig/build
-cd xmrig/build
+cd xmrig/scripts
+./build_deps.sh && cd ../build
+
 clear
 echo
 echo -e "\t\tChoose install type"
@@ -62,11 +64,11 @@ read -n 1 type
 echo
 if [ "$type" -eq 1 ]
 then
-cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=OFF \
+cmake .. cmake .. -DXMRIG_DEPS=scripts/deps -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=OFF \
  -DWITH_CN_FEMTO=OFF -DWITH_ARGON2=OFF -DWITH_ASTROBWT=OFF \
  -DWITH_KAWPOW=OFF -DWITH_OPENCL=OFF -DWITH_CUDA=OFF -DWITH_MSR=OFF \
- -DWITH_SSE4_1=OFF -DWITH_BENCHMARK=OFF 
-else cmake .. -DWITH_HWLOC=OFF
+ -DWITH_SSE4_1=OFF -DWITH_BENCHMARK=OFF  -DWITH_GHOSTRIDER=OFF
+else cmake .. -DXMRIG_DEPS=scripts/deps
 fi
 make -j$(nproc)
 cd
