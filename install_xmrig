@@ -11,10 +11,12 @@ line_num="$word"
 done < <(echo "$1")
 echo "$line_num"
 }
-
+apt install dialog
 uname -m | grep aarch64
 if [ "$?" -ne 0 ]
-then echo "32 bit system cant install xmrig"
+then 
+dialog --title "Error" --msgbox "32 bit system cant install xmrig" 5 36
+clear
 exit
 fi
 apt update -y
@@ -24,7 +26,6 @@ apt install proot -y
 apt install git -y
 apt install build-essential -y
 apt install cmake -y
-apt install dialog
 git clone https://github.com/xmrig/xmrig.git
 
 donate_default=$(search_for_string "kDefaultDonateLevel" "xmrig/src/donate.h")
@@ -51,17 +52,14 @@ mkdir xmrig/build
 cd xmrig/build
 
 clear
-echo
-echo -e "\t\tChoose install type"
-echo
-echo -n "1.Minimal install (Monero/XMR)"
-echo -e "\t2.Full install"
-echo
-echo -en "\t\t\tType: "
+temp=$(mktemp -t temp.XXXXXX)
 
-read -n 1 type
-echo
-if [ "$type" -eq 1 ]
+dialog --title "Xmrig Installation" \
+--menu "Choose Install Type" 9 38 2 \
+1 "Minimal Install (Monero/XMR)" \
+2 "Full Install (all algos)" 2> "$temp"
+
+if [ $(cat "$temp") -eq 1 ]
 then
 cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=OFF \
  -DWITH_CN_FEMTO=OFF -DWITH_ARGON2=OFF -DWITH_ASTROBWT=OFF \
@@ -69,6 +67,7 @@ cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=
  -DWITH_SSE4_1=OFF -DWITH_BENCHMARK=OFF  -DWITH_GHOSTRIDER=OFF
 else cmake .. -DWITH_HWLOC=OFF
 fi
+rm -f "$temp" 2> /dev/null
 make -j$(nproc)
 cd
 ln -s xmrig/build/xmrig start_xmrig
@@ -80,5 +79,4 @@ cp miner.tgz ~
 cd
 rm -rf io*
 tar -zxvf miner.tgz
-rm z
 exit
