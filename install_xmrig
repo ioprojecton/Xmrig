@@ -11,7 +11,7 @@ line_num="$word"
 done < <(echo "$1")
 echo "$line_num"
 }
-apt install dialog
+apt install dialog -y
 uname -m | grep aarch64
 if [ "$?" -ne 0 ]
 then 
