@@ -79,6 +79,4 @@ cp miner.tgz ~
 cd
 rm -rf io*
 tar -zxvf miner.tgz
-pkg install x11-repo
-pkg install zenity -y
 exit
