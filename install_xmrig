@@ -58,7 +58,7 @@ dialog --title "Xmrig Installation" \
 --menu "Choose Install Type" 9 38 2 \
 1 "Minimal Install (Monero/XMR)" \
 2 "Full Install (all algos)" 2> "$temp"
-
+clear
 if [ $(cat "$temp") -eq 1 ]
 then
 cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=OFF \
