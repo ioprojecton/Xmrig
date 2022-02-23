@@ -25,13 +25,10 @@ xmrig/src/donate.h > "$temp"
 sed 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/' \
 "$temp" > xmrig/src/donate.h
 
-rm -f "$temp"
-
 mkdir xmrig/build
 cd xmrig/build
 
 clear
-temp=$(mktemp -t temp.XXXXXX)
 
 dialog --title "Xmrig Installation" \
 --menu "Choose Install Type" 9 38 2 \
