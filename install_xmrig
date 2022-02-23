@@ -19,8 +19,8 @@ git clone https://github.com/xmrig/xmrig.git
 
 temp=$(mktemp -t temp.XXXXXX)
 sed -e '
-s/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/
-s/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/' xmrig/src/donate.h > "$temp"
+/kDefaultDonateLevel/s/ = 1/ = 0/
+/kMinimumDonateLevel/s/ = 1/ = 0/' xmrig/src/donate.h > "$temp"
  
 cp "$temp" xmrig/src/donate.h
 
