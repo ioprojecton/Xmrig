@@ -1,16 +1,5 @@
 #!/bin/bash
 
-search_for_string(){
-echo "$(grep -n $1 $2)"
-}
-
-search_line_number(){
-while read -d ":" word
-do
-line_num="$word"
-done < <(echo "$1")
-echo "$line_num"
-}
 apt install dialog
 uname -m | grep aarch64
 if [ "$?" -ne 0 ]
@@ -28,25 +17,15 @@ apt install build-essential -y
 apt install cmake -y
 git clone https://github.com/xmrig/xmrig.git
 
-donate_default=$(search_for_string "kDefaultDonateLevel" "xmrig/src/donate.h")
-donate_minimum=$(search_for_string "kMinimumDonateLevel" "xmrig/src/donate.h")
+temp=$(mktemp -t temp.XXXXXX)
 
-donate_default_line=$(search_line_number "$donate_default")
-donate_minimum_line=$(search_line_number "$donate_minimum")
+sed 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/' \ 
+xmrig/src/donate.h > "$temp"
 
-i=1
-while read line
-do
-if [ "$i" -eq "$donate_default_line" ]
-then echo "constexpr const int kDefaultDonateLevel = 0;"
-elif [ "$i" -eq "$donate_minimum_line" ]
-then echo "constexpr const int kMinimumDonateLevel = 0;"
-else echo "$line"
-fi
-((i++))
-done < xmrig/src/donate.h > xmrig/src/newDonate.h
-rm xmrig/src/donate.h
-mv xmrig/src/newDonate.h xmrig/src/donate.h
+sed 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/' \
+"$temp" > xmrig/src/donate.h
+
+rm -f "$temp"
 
 mkdir xmrig/build
 cd xmrig/build
