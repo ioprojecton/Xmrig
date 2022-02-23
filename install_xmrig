@@ -18,12 +18,10 @@ apt install cmake -y
 git clone https://github.com/xmrig/xmrig.git
 
 temp=$(mktemp -t temp.XXXXXX)
-
-sed 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/' \ 
+sed 's/kDefaultDonateLevel = 1/kDefaultDonateLevel = 0/' \
 xmrig/src/donate.h > "$temp"
-
 sed 's/kMinimumDonateLevel = 1/kMinimumDonateLevel = 0/' \
-"$temp" > xmrig/src/donate.h
+"$temp" > xmrig/src/donate.h 
 
 mkdir xmrig/build
 cd xmrig/build
