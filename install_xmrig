@@ -17,17 +17,15 @@ apt install build-essential -y
 apt install cmake -y
 git clone https://github.com/xmrig/xmrig.git
 
-temp=$(mktemp -t temp.XXXXXX)
-sed -e '
+sed -i '
 /kDefaultDonateLevel/s/ = 1/ = 0/
-/kMinimumDonateLevel/s/ = 1/ = 0/' xmrig/src/donate.h > "$temp"
- 
-cp "$temp" xmrig/src/donate.h
+/kMinimumDonateLevel/s/ = 1/ = 0/' xmrig/src/donate.h
 
 mkdir xmrig/build
 cd xmrig/build
 
 clear
+temp=$(mktemp -t temp.XXXXXX)
 
 dialog --title "Xmrig Installation" \
 --menu "Choose Install Type" 9 38 2 \
