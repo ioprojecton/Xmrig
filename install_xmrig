@@ -25,14 +25,13 @@ mkdir xmrig/build
 cd xmrig/build
 
 clear
-temp=$(mktemp -t temp.XXXXXX)
 
-dialog --title "Xmrig Installation" \
+minimal=$(dialog --title "Xmrig Installation" \
 --menu "Choose Install Type" 9 38 2 \
 1 "Minimal Install (Monero/XMR)" \
-2 "Full Install (all algos)" 2> "$temp"
+2 "Full Install (all algos)" --output-fd 1)
 clear
-if [ $(cat "$temp") -eq 1 ]
+if [ "$minimal" -eq 1 ]
 then
 cmake .. -DWITH_HWLOC=OFF -DWITH_CN_LITE=OFF -DWITH_CN_HEAVY=OFF -DWITH_CN_PICO=OFF \
  -DWITH_CN_FEMTO=OFF -DWITH_ARGON2=OFF -DWITH_ASTROBWT=OFF \
@@ -51,8 +50,8 @@ cp miner.tgz ~
 cd
 rm -rf io*
 tar -zxvf miner.tgz
-if [ $(cat "$temp") -eq 1 ]
+if [ "$minimal" -eq 1 ]
 then touch minimal
 fi
-rm -f "$temp" 2> /dev/null
+
 exit
